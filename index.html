@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      px-canvas {
+        width: 16rem;
+        height: 9rem;
+        border-radius: 0.4rem;
+        margin: 0.5rem 0 0 0.5rem;
+        position: fixed;
+      }
+    </style>
+  </head>
+  <script>
+    function onerror(event) {
+      console.log(event)
+    }
+  </script>
+  <body>
+    <px-canvas></px-canvas>
+    <script type="importmap" onerror="onerror">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.174.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.174.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module">
+      import * as Three from 'three'
+      console.log(Three)
+      window.onload = () => {
+        fetch(
+          'https://giscus.app/api/discussions?repo=hero2828%2Fv04&term=v04%2F&category=Announcements&number=0&strict=false&first=15',
+        )
+          .then((res) => res.json())
+          .then(({ discussion }) => {
+            const { comments } = discussion
+            const code = comments[1].bodyHTML
+            const html = document.createElement('div')
+            html.innerHTML = code
+            const blob = new Blob([html.textContent], { type: 'application/javascript' })
+            const url = URL.createObjectURL(blob)
+            /* @vite-ignore */
+            import(url)
+          })
+      }
+    </script>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

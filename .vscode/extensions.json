@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "boyswan.glsl-literal",
+    "slevesque.shader",
+    "bertieblackman.snappier",
+    "pkief.material-icon-theme",
+    "lokalise.i18n-ally",
+    "dbaeumer.vscode-eslint",
+    "aminer.codegeex",
+    "ms-ceintl.vscode-language-pack-zh-hans",
+    "giscafer.leek-fund",
+    "aaron-bond.better-comments"
+  ]
+}
